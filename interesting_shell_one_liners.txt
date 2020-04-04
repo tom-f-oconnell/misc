@@ -1,0 +1,5 @@
+
+# To print just the install directories for all pip packages
+python3 -m pip list --format freeze 2>/dev/null | awk -F== '{print $1}' | xargs python3 -m pip show | grep '^Location:' | sed 's/^Location: //' | sort | uniq
+
+
