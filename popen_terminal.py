@@ -21,7 +21,7 @@ def is_pid_running(pid):
 
 
 def main():
-    cmd = ("gnome-terminal -x bash -i -c 'cd ~/src/python_2p_analysis; "
+    cmd = ("gnome-terminal -x bash -i -c 'cd ~/src/hong2p; "
         "echo PID=$$; sleep 5; echo test2; sleep 10; echo   test3; bash'"
     )
     path = '/home/tom/src/automate2p'
