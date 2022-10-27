@@ -100,6 +100,10 @@ mullvad tunnel wireguard key regenerate
 
 mullvad relay set tunnel-protocol wireguard
 
+# Amsterdam, Netherlands. Must be same city as port is assigned in, per mullvad web
+# interface.
+mullvad relay set location nl ams
+
 # TODO research / test this isn't causing other leaks
 mullvad lan set allow
 
@@ -107,6 +111,9 @@ mullvad lan set allow
 mullvad auto-connect set on
 # TODO test this persists across reboots + actually blocks all traffic
 mullvad always-require-vpn set on
+
+# TODO test again, but i think i need one `mullvad connect` here to connect the first
+# time
 
 # TODO TODO configure qbittorrent to start / autostart here (after mullvad connection
 # established)
@@ -172,6 +179,7 @@ Vagrant.configure("2") do |config|
     trigger.run = {path: "write_account.sh"}
   end
 
+  # TODO also add (as a (new?) trigger?) opening firefox to https://mullvad.net/en/check
   config.trigger.after :up do |trigger|
     trigger.name = "set mullvad account"
     trigger.run_remote = {inline: "mullvad account set `cat /vagrant/account` && rm /vagrant/account"}
